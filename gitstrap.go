@@ -6,7 +6,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/g4s8/gopwd"
 	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
 	"gopkg.in/yaml.v2"
@@ -18,12 +17,21 @@ import (
 	"os/exec"
 	"strings"
 	"text/template"
+	"runtime"
+	"path/filepath"
 )
 
 const (
 	// V1 - first version of config
 	V1 = "v1"
 )
+
+var (
+    _, b, _, _ = runtime.Caller(0)
+    basepath   = filepath.Dir(b)
+)
+
+
 
 // Config - gitstrap config
 type Config struct {
@@ -351,11 +359,7 @@ func (s *strapCtx) repoName() (string, error) {
 	if s.cfg.Gitstrap.Github.Repo.Name != nil {
 		name = *s.cfg.Gitstrap.Github.Repo.Name
 	} else {
-		name, err := gopwd.Name()
-		if err != nil {
-			return name, errors.New("Failed to get PWD")
-		}
-		return name, nil
+		name = filepath.Base(basepath)
 	}
 	return name, nil
 }
