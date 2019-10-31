@@ -355,6 +355,7 @@ func (s *strapCtx) repoName() (string, error) {
 		if err != nil {
 			return name, errors.New("Failed to get PWD")
 		}
+		return name, nil
 	}
 	return name, nil
 }
