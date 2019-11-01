@@ -2,7 +2,7 @@ gitstrap:
     version: v1
     github:
         repo:
-            # name: gitstrap
+            name: gitstrap
             description: "Command line tool to bootstrap Github repository"
             private: false
             hooks:
