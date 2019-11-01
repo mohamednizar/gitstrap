@@ -354,7 +354,7 @@ func (s *strapCtx) repoName() (string, error) {
 	} else {
 		name, err := gopwd.Name()
 		if err != nil {
-			return strap.err("failed to get $PWD", err)
+			return name, errors.New("Failed to get PWD")
 		}
 	}
 	return name, nil
