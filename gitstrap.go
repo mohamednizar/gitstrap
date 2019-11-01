@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/google/go-github/github"
+	"github.com/mohamednizar/gopwd"
 	"golang.org/x/oauth2"
 	"gopkg.in/yaml.v2"
 	"io"
@@ -17,20 +18,12 @@ import (
 	"os/exec"
 	"strings"
 	"text/template"
-	"runtime"
-	"path/filepath"
 )
 
 const (
 	// V1 - first version of config
 	V1 = "v1"
 )
-
-var (
-    _, b, _, _ = runtime.Caller(0)
-    basepath   = filepath.Dir(b)
-)
-
 
 
 // Config - gitstrap config
@@ -359,7 +352,10 @@ func (s *strapCtx) repoName() (string, error) {
 	if s.cfg.Gitstrap.Github.Repo.Name != nil {
 		name = *s.cfg.Gitstrap.Github.Repo.Name
 	} else {
-		name = filepath.Base(basepath)
+		name, err := gopwd.Name()
+		if err != nil {
+			return err , nil
+		}
 	}
 	return name, nil
 }
