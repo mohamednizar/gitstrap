@@ -1,4 +1,5 @@
-./gitignore
 dist/**
 bin/**
-gitstrap
+_old/
+/gitstrap
+.gitstrap.yaml

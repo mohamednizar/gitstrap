@@ -1,12 +1,17 @@
 module github.com/g4s8/gitstrap
 
 require (
-	github.com/g4s8/gopwd v0.0.0-20191109142035-f7311044bc0a
-	github.com/g4s8/gitstrap v0.0.0-20191003172754-76ad177c10f3
-	github.com/google/go-github v17.0.0+incompatible
-	github.com/google/go-querystring v1.0.0 // indirect
-	github.com/stretchr/testify v1.4.0
-	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
-	gopkg.in/h2non/gock.v1 v1.0.15
-	gopkg.in/yaml.v2 v2.2.4
+	github.com/creasty/defaults v1.5.2
+	github.com/fatih/structtag v1.2.0
+	github.com/g4s8/go-matchers v0.0.0-20201209072131-8aaefc3fcb9c
+	github.com/google/go-github/v38 v38.1.0
+	github.com/kr/text v0.2.0 // indirect
+	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
+	github.com/urfave/cli/v2 v2.3.0
+	golang.org/x/net v0.0.0-20201021035429-f5854403a974 // indirect
+	golang.org/x/oauth2 v0.0.0-20210313182246-cd4f82c27b84
+	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 )
+
+go 1.13

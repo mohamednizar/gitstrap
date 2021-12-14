@@ -1,31 +1,34 @@
+---
+before:
+  hooks:
+    - go mod download
 builds:
-  -
-    main: ./cmd/gitstrap/main.go
-    env:
+  - env:
       - CGO_ENABLED=0
-    ldflags:
-      - -s -w
-        -X "main.buildDate={{.Date}}"
-        -X "main.buildVersion={{.Env.TRAVIS_TAG}}{{.Env.TRAVIS_BUILD_NUMBER}}"
-        -X "main.buildCommit={{.Env.TRAVIS_COMMIT}}"
-archive:
-  replacements:
-    darwin: Darwin
-    linux: Linux
-    windows: Windows
-    386: i386
-    amd64: x86_64
-brew:
-  github:
-    owner: g4s8
-    name: .tap
-  commit_author:
-    name: goreleaser
-    email: g4s8.public+tap@gmail.com
-  homepage: "https://github.com/g4s8/gitstrap"
-  folder: Formula
-  dependencies:
-    - git
+    goos:
+      - linux
+      - windows
+      - darwin
+    main: ./cmd/gitstrap/
+archives:
+  - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}'
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+brews:
+  - tap:
+      owner: g4s8
+      name: .tap
+    commit_author:
+      name: goreleaser
+      email: g4s8.public+tap@gmail.com
+    homepage: "https://github.com/g4s8/gitstrap"
+    folder: Formula
+    dependencies:
+      - git
 checksum:
   name_template: 'checksums.txt'
 snapshot:
@@ -34,5 +37,5 @@ changelog:
   sort: asc
   filters:
     exclude:
-    - '^docs:'
-    - '^test:'
+      - '^docs:'
+      - '^test:'
